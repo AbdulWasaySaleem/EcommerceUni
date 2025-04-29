@@ -17,7 +17,7 @@ connectDB();
 
 // App setup
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 // Swagger Docs Route
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
