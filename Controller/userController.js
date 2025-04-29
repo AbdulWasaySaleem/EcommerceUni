@@ -58,7 +58,9 @@ export const userLoginController = async (req, res) => {
   try {
     // Validate input
     if (!email || !password) {
-      return res.status(400).json({ message: "Email and password are required" });
+      return res
+        .status(400)
+        .json({ message: "Email and password are required" });
     }
 
     // Find user
@@ -94,34 +96,29 @@ export const userLoginController = async (req, res) => {
   }
 };
 
-
 export const getWishlistController = async (req, res) => {
   try {
     const userId = req.user.id;
 
     const user = await User.findById(userId);
 
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    if (!user) return res.status(404).json({ message: "User not found" });
 
     res.status(200).json({
       success: true,
-      message: 'Wishlist fetched successfully',
+      message: "Wishlist fetched successfully",
       data: user.wishlist,
     });
   } catch (error) {
-    console.error('Get Wishlist Error:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error("Get Wishlist Error:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
-
-
 
 export const addToWishlistController = async (req, res) => {
   try {
     const { productId } = req.body;
     const userId = req.user.id;
-
-    console.log(userId, productId); 
 
     const product = await Product.findById(productId);
     if (!product) {
@@ -131,7 +128,9 @@ export const addToWishlistController = async (req, res) => {
     const user = await User.findById(userId);
 
     // Check if already in wishlist (by product name)
-    const alreadyExists = user.wishlist.some(item => item.productName === product.productName);
+    const alreadyExists = user.wishlist.some(
+      (item) => item.productName === product.productName
+    );
     if (alreadyExists) {
       return res.status(400).json({ message: "Product already in wishlist" });
     }
@@ -146,13 +145,14 @@ export const addToWishlistController = async (req, res) => {
 
     await user.save();
 
-    res.status(200).json({ message: "Product added to wishlist", wishlist: user.wishlist });
+    res
+      .status(200)
+      .json({ message: "Product added to wishlist", wishlist: user.wishlist });
   } catch (error) {
     console.error("Add to Wishlist Error:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
-
 
 export const removeFromWishlistController = async (req, res) => {
   try {
@@ -161,14 +161,18 @@ export const removeFromWishlistController = async (req, res) => {
     console.log(userId, productId);
 
     const user = await User.findById(userId);
-    if (!user) return res.status(404).json({ message: 'User not found' });
+    if (!user) return res.status(404).json({ message: "User not found" });
 
-    user.wishlist = user.wishlist.filter(item => item._id.toString() !== productId);
+    user.wishlist = user.wishlist.filter(
+      (item) => item._id.toString() !== productId
+    );
     await user.save();
 
-    res.status(200).json({ success: true, message: 'Product removed from wishlist' });
+    res
+      .status(200)
+      .json({ success: true, message: "Product removed from wishlist" });
   } catch (error) {
-    console.error('Remove Wishlist Error:', error);
-    res.status(500).json({ message: 'Internal server error' });
+    console.error("Remove Wishlist Error:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
