@@ -121,6 +121,8 @@ export const addToWishlistController = async (req, res) => {
     const { productId } = req.body;
     const userId = req.user.id;
 
+    console.log(userId, productId); 
+
     const product = await Product.findById(productId);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });

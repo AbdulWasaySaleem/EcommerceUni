@@ -25,6 +25,8 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.use(express.json());
+
 
 // Routes
 app.use("/api/user", userRoutes); // example: /api/user/register, /api/user/login

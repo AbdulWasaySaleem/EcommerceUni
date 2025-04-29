@@ -1,4 +1,4 @@
-// script.js
+// script.js =>avst data inser scrpt
 import mongoose from "mongoose";
 import xlsx from "xlsx";
 import path from "path";
