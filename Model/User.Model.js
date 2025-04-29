@@ -27,6 +27,8 @@ const userSchema = new mongoose.Schema(
       {
         productName: { type: String, required: true },
         productLink: { type: String, required: true },
+        productImage: { type: String, required: true },
+        salePrice: { type: String, required: true },
       },
     ],
   },
