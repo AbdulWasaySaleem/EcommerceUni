@@ -25,14 +25,14 @@ const userSchema = new mongoose.Schema(
     },
     wishlist: [
       {
-        productName: { type: String, required: true },
-        productLink: { type: String, required: true },
-        productImage: { type: String, required: true },
-        salePrice: { type: String, required: true },
+        productName: { type: String },
+        productLink: { type: String },
+        productImage: { type: String },
+        salePrice: { type: String },
       },
     ],
   },
-  { timestamps: true } 
+  { timestamps: true }
 );
 
 const User = mongoose.model("User", userSchema);
