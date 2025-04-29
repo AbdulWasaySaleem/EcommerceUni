@@ -140,7 +140,7 @@ export const addToWishlistController = async (req, res) => {
     user.wishlist.push({
       productName: product.productName,
       productLink: product.productLink,
-      productImage: product.productImage,
+      productImage: product.imageLink,
       salePrice: product.salePrice,
     });
 
